@@ -15,7 +15,7 @@ public:
     std::string getEmail() const;
     void setNom(std::string name) ;
     void setEmail(std::string email) ;
-    int getId();
+    int getId() const;
     void setId(int id);
 protected:
     int Id;

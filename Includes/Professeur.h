@@ -6,28 +6,27 @@
 #include "Annonce.h"
 #include "User.h"
 #include "Classe.h"
-#include "Vect.h"
+#include <vector>
 #include "Demande.h"
-#include "Document.h"
 #include "Question.h"
-
+class Devoir;
 class Professeur:public User {
 public:
-    Professeur(int Id,std::string Nom,std::string Email);
+    Professeur(int Id,std::string Nom,std::string Email,std::string Role);
     ~Professeur();
     std::string AddClasse(Classe&);
     bool DelClasse(Classe&);
-    Vect<Demande> getDemandes(Classe&);
-    Vect<Classe> getClasses();
+    std::vector<Demande> getDemandes(Classe&);
+    std::vector<Classe> getClasses();
     bool AccepteDemande(Demande&);
     bool RejetDemande(Demande&);
     bool AddAnnoce(Annonce&);
     bool DelAnnonce(Annonce&);
-    Vect<Annonce> getAnnonces();
+    std::vector<Annonce> getAnnonces();
     bool AddDocument(Classe&);
-    bool DelDocument(Document&);
-    Vect<Document> getDocuments(Classe&);
-    Vect<Question> getQuestions();
+    bool DelDocument(Devoir&);
+    std::vector<Devoir> getDocuments(Classe&);
+    std::vector<Question> getQuestions();
     bool AddReponse(std::string reponse);
 };
 

@@ -1,7 +1,7 @@
 // Created by Atir Mohammed on 18-Apr-26
 //CNE: K133125030
 //Filiere: IA/4 G:1
-#include "../Headers//User.h"
+#include "../Includes/User.h"
 using namespace std; /* puique nous avons dans le fichier CPP nous pouvons mettre tous utilise
 espace de noms std, aucun harm (risque car on inclut seulement le header)
 */
@@ -15,6 +15,7 @@ User::User(int id,string Nom,string Email) {
 }
 
 User::User(const User& p) {
+    this->setId(p.getId());
     this->setNom(p.getNom());
     this->setEmail(p.getEmail());
 }
@@ -26,6 +27,7 @@ User& User::operator=(const User& p) {
     if (this != &p) {
         this->setNom(p.getNom());
         this->setEmail(p.getEmail());
+        this->setId(p.getId());
     }
     return *this;
 }
@@ -47,7 +49,7 @@ void User::setEmail(string email) {
     this->Email = email;
 }
 
-int User::getId() {
+int User::getId() const {
     return this->Id;
 }
 

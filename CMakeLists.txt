@@ -14,8 +14,8 @@ add_executable(PFM
         Includes/Annonce.h
         Includes/Classe.h
         Includes/Demande.h
-        Includes/Devoir.h
         Includes/Document.h
+        Includes/Devoir.h
         Includes/Etudiant.h
         Includes/Professeur.h
         Includes/Question.h
@@ -24,10 +24,13 @@ add_executable(PFM
         Sources/Annonce.cpp
         Sources/Cours.cpp
         Sources/Demande.cpp
-        Sources/Devoir.cpp
         Sources/Document.cpp
+        Sources/Devoir.cpp
         Sources/Etudiant.cpp
         Sources/Professeur.cpp
         Sources/Question.cpp
         Sources/User.cpp
-        Sources/Vect.cpp)
+        Sources/Vect.cpp
+        Sources/Classe.cpp)
+find_package(Qt6 COMPONENTS Sql REQUIRED)
+target_link_libraries(PFM PRIVATE Qt6::Sql)

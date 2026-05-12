@@ -2,7 +2,7 @@
 //CNE: K133125030
 //Filiere: IA/4 G:1
 #include <stdexcept>
-#include "../Headers/Vect.h"
+#include "../Includes/Vect.h"
 template <typename T>
 Vect<T>::Vect(int capInitiale) {
     capacite = capInitiale;

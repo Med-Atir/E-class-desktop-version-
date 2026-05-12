@@ -3,9 +3,13 @@
 
 #ifndef _CLASSE_H_
 #define _CLASSE_H_
+#include <iostream>
 
 class Classe {
 public:
+    Classe(int id,std::string titre,std::string code,std::string description);
+    ~Classe();
+    Classe(const Classe& cl);
     int getId();
     std::string getTitre();
     std::string getCode();
