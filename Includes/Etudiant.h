@@ -3,7 +3,6 @@
 
 #ifndef _ETUDIANT_H_
 #define _ETUDIANT_H_
-#include "Demande.h"
 #include "Devoir.h"
 #include "Question.h"
 
@@ -12,13 +11,13 @@ public:
     Etudiant(int id,std::string Nom,std::string Email);
     Etudiant(const Etudiant& e);
     ~Etudiant();
-    Classe RechercherClasseCode(std::string code);
-    void InscrireClasse(const Classe&);
+    Classe* RechercherClasse(std::string code);
+    bool InscrireClasse(Classe&);
     std::vector<Classe> getCoursInscri();
     std::vector<Annonce> getAnnonces();
     std::vector<Devoir> getDevoirs();
-    std::vector<Question> getQuestions();
-    void addQuestion(const Question&);
+    std::vector<Question> getMesQuestions();
+    void addQuestion(Question&);
 };
 
 #endif //Etudiant

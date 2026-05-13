@@ -1,14 +1,15 @@
 //Created by Mohammed atir on 12/05/2026
 //IA S4 / Groupe 1
 #include "../Includes/Document.h"
+#include "../Database/Db.h"
 
-Document::Document(int id, std::string titre,std::string cheminFichier, QDateTime date, const Professeur &prof, const Classe &cl) {
+Document::Document(int id, std::string titre,std::string cheminFichier, QDateTime date,int idprof,int idclass) {
     this->setId(id);
     this->setTitre(titre);
     this->setCheminFichier(cheminFichier);
     this->setDate(date);
-    this->setProf(prof);
-    this->setClasse(cl);
+    this->setIdProf(idprof);
+    this->setIdClasse(idclass);
 }
 
 Document::Document(const Document &d) {
@@ -16,20 +17,28 @@ Document::Document(const Document &d) {
     this->setTitre(d.titre);
     this->setCheminFichier(d.cheminFichier);
     this->setDate(d.date);
-    this->setProf(*(d.prof));
-    this->setClasse(*(d.classe));
+    this->setIdProf(d.idprof);
+    this->setIdClasse(d.idclasse);
+}
+
+int Document::getIdclasse() {
+    return this->idclasse;
+}
+
+int Document::getIdprof() {
+    return this->idprof;
 }
 
 void Document::setTitre(std::string titre) {
     this->titre = titre;
 }
 
-void Document::setClasse(const Classe &cl) {
-    this->classe = new Classe(cl);
+void Document::setIdClasse(int cl) {
+    this->idclasse = cl;
 }
 
 Professeur *Document::getProf() {
-    return this->prof;
+    DB::getProf(this->idprof);
 }
 
 void Document::setDate(QDateTime date) {
@@ -45,15 +54,15 @@ QDateTime Document::getDate() {
 }
 
 Classe *Document::getClasse() {
-    return this->classe;
+    DB::getClasse(this->idclasse);
 }
 
 void Document::setId(int id) {
     this->id = id;
 }
 
-void Document::setProf(const Professeur &pr) {
-    this->prof = new Professeur(pr);
+void Document::setIdProf(int id) {
+    this->idprof = id;
 }
 
 std::string Document::getCheminFichier() {
@@ -69,6 +78,4 @@ void Document::setCheminFichier(std::string chemin) {
 }
 
 Document::~Document() {
-    delete this->classe;
-    delete this->prof;
 }

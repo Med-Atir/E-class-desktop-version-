@@ -2,8 +2,9 @@
 //IA S4 / Groupe 1
 #include "../Includes/Classe.h"
 
-Classe::Classe(int id, std::string titre, std::string code, std::string description) {
+Classe::Classe(int id,int idprof, std::string titre, std::string code, std::string description) {
     this->setId(id);
+    this->setIdProf(idprof);
     this->setTitre(titre);
     this->setCode(code);
     this->setDescription(description);
@@ -11,11 +12,11 @@ Classe::Classe(int id, std::string titre, std::string code, std::string descript
 
 Classe::Classe(const Classe &cl) {
     this->setId(cl.Id);
+    this->setIdProf(cl.Idprof);
     this->setTitre(cl.Titre);
     this->setCode(cl.Code);
     this->setDescription(cl.Description);
 }
-
 Classe::~Classe() {
 }
 
@@ -49,4 +50,12 @@ void Classe::setDescription(std::string Description) {
 
 void Classe::setTitre(std::string Titre) {
     this->Titre = Titre;
+}
+
+int Classe::getIdProf() {
+    return this->Idprof;
+}
+
+void Classe::setIdProf(int id) {
+    this->Idprof = id;
 }

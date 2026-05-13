@@ -10,24 +10,26 @@
 #include "Demande.h"
 #include "Question.h"
 class Devoir;
+class Document;
 class Professeur:public User {
 public:
-    Professeur(int Id,std::string Nom,std::string Email,std::string Role);
+    Professeur(int Id,std::string Nom,std::string Email);
     ~Professeur();
     std::string AddClasse(Classe&);
     bool DelClasse(Classe&);
-    std::vector<Demande> getDemandes(Classe&);
-    std::vector<Classe> getClasses();
+    std::vector<Demande> getDemandes();
+    std::vector<Classe> getMesClasses();
     bool AccepteDemande(Demande&);
     bool RejetDemande(Demande&);
     bool AddAnnoce(Annonce&);
     bool DelAnnonce(Annonce&);
     std::vector<Annonce> getAnnonces();
-    bool AddDocument(Classe&);
-    bool DelDocument(Devoir&);
-    std::vector<Devoir> getDocuments(Classe&);
+    bool AddDocument(Document&,Classe&);
+    bool DelDocument(Document&);
+    std::vector<Document> getDocuments();
+    std::vector<Devoir> getDevoirs();
     std::vector<Question> getQuestions();
-    bool AddReponse(std::string reponse);
+    bool AddReponse(Question&,std::string reponse);
 };
 
 

@@ -11,7 +11,7 @@ class Professeur;
 
 class Annonce {
 public:
-    Annonce(int id,std::string titre,std::string contenu,QDateTime date,const Professeur& prof,const Classe& cl);
+    Annonce(int id,std::string titre,std::string contenu,QDateTime date,int idprof,int idclasse);
     ~Annonce();
     int getId();
     std::string getTitre();
@@ -19,19 +19,21 @@ public:
     QDateTime getDate();
     Professeur* getProf();
     Classe* getClasse();
+    int getIdprof();
+    int getIdclasse();
     void setId(int id);
     void setTitre(std::string titre);
     void setContenu(std::string contenu);
     void setDate(QDateTime date);
-    void setProf(const Professeur& prof);
-    void setClasse(const Classe& cl);
+    void setProf(int idprof);
+    void setClasse(int idclasse);
 private:
     int Id;
     std::string titre;
     std::string contenu;
     QDateTime date;
-    Professeur* prof;
-    Classe* classe;
+    int idprof;
+    int idclasse;
 };
 
 #endif //Annonce

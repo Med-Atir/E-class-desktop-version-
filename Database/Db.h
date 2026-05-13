@@ -9,6 +9,14 @@
 #include <QString>
 #include <QVariant>
 
+class Demande;
+class Document;
+class Question;
+class Annonce;
+class Devoir;
+class Classe;
+class Professeur;
+class Etudiant;
 class DB {
 private:
     QSqlDatabase db;
@@ -16,10 +24,36 @@ private:
 public:
     DB();
     ~DB();
-
     // Gestion de la connexion
     bool connect(const QString& dbName);
     void disconnect();
+    static std::string AddClasse(Classe& cl,int idprof);
+    static Professeur* getProf(int idProf);
+    static Classe* getClasse(int idClasse);
+    static Etudiant* getEtudiant(int idEtd);
+    static bool DelClasse(Classe &cl);
+    static std::vector<Demande> getDemandes(int idprof);
+    static std::vector<Devoir> getEtudiantDevoirs(int idetd);
+    static void addQuestion(Question &q);
+    static std::vector<Annonce> getEtudiantAnnonces(int idetd);
+    static std::vector<Classe> getEtudiantclasse(int idetd);
+    static std::vector<Classe> getProfclasse(int idprof);
+    static bool AccepteDemande(Demande&);
+    static bool RejetDemande(Demande&);
+    static bool AddAnnoce(Annonce&);
+    static bool DelAnnonce(Annonce&);
+    static std::vector<Annonce> getProfAnnonces(int idprof);
+    static bool AddDocument(Document& document,Classe&);
+    static bool DelDocument(Document&);
+    static bool DelDevoir(Devoir&);
+    static std::vector<Document> getDocuments(Classe&);
+    static std::vector<Devoir> getProfDevoirs(int idprof);
+    static std::vector<Document> getProfDocuments(int idprof);
+    static std::vector<Question> getProfQuestions(int idprof);
+    static bool AddReponse(Question& q,std::string reponse);
+    static Classe* RechercherClasse(std::string code);
+    static bool InscrireClasse(int idetd,Classe&);
+    static std::vector<Question> getEtudiantQuestions(int idetd);
 };
 
 #endif // DB_H

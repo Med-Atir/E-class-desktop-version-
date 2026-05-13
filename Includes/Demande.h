@@ -10,9 +10,11 @@ class Etudiant;
 
 class Demande {
 public:
-    Demande(int id,std::string status,QDateTime date,const Etudiant& etd,const Classe& cl);
+    Demande(int id,std::string status,QDateTime date,int idetd,int idclasse);
     ~Demande();
     int getId();
+    int getIdEtd();
+    int getIdClasse();
     std::string getStatus();
     QDateTime getDate();
     Etudiant* getEtudiant();
@@ -20,14 +22,14 @@ public:
     void setId(int id);
     void setStatus(std::string status);
     void setDate(QDateTime date);
-    void setEtudiant(const Etudiant& etd);
-    void setClasse(const Classe& cl);
+    void setIdEtudiant(int id);
+    void setIdClasse(int cl);
 private:
     int Id;
     std::string Status;
     QDateTime Date;
-    Etudiant* etudiant;
-    Classe* classe;
+    int idetd;
+    int idclasse;
 };
 
 #endif //Demande

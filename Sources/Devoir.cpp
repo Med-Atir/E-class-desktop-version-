@@ -3,11 +3,10 @@
 
 #include "Devoir.h"
 
-Devoir::Devoir(int id, std::string titre, std::string consigne, std::string deadline, std::string cheminFichier, QDateTime date, const Professeur &prof, const Classe &cl): Document(id,titre,cheminFichier,date,prof,cl){
+Devoir::Devoir(int id, std::string titre, std::string consigne, std::string deadline, std::string cheminFichier, QDateTime date, int prof,int cl): Document(id,titre,cheminFichier,date,prof,cl){
     this->setConsigne(consigne);
     this->setDeadline(deadline);
 }
-
 Devoir::Devoir(const Devoir &d):Document(d) {
     this->setConsigne(d.consigne);
     this->setDeadline(d.deadline);

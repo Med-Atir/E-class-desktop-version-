@@ -7,19 +7,22 @@
 
 class Classe {
 public:
-    Classe(int id,std::string titre,std::string code,std::string description);
+    Classe(int id,int idprof,std::string titre,std::string code,std::string description);
     ~Classe();
     Classe(const Classe& cl);
     int getId();
+    int getIdProf();
     std::string getTitre();
     std::string getCode();
     std::string getDescription();
     void setId(int id);
+    void setIdProf(int id);
     void setTitre(std::string Titre);
     void setCode(std::string Code);
     void setDescription(std::string Description);
 private:
     int Id;
+    int Idprof;
     std::string Titre;
     std::string Code;
     std::string Description;

@@ -8,7 +8,7 @@
 
 class Document {
 public:
-    Document(int id,std::string titre,std::string cheminFichier,QDateTime date,const Professeur& prof,const Classe& cl);
+    Document(int id,std::string titre,std::string cheminFichier,QDateTime date,int prof,int cl);
     Document(const Document&);
     ~Document();
     int getID();
@@ -17,19 +17,21 @@ public:
     QDateTime getDate();
     Professeur* getProf();
     Classe* getClasse();
+    int getIdprof();
+    int getIdclasse();
     void setId(int id);
     void setTitre(std::string titre);
     void setCheminFichier(std::string chemin);
     void setDate(QDateTime date);
-    void setProf(const Professeur& pr);
-    void setClasse(const Classe& cl);
+    void setIdProf(int idpr);
+    void setIdClasse(int idcl);
 private:
     int id;
     std::string titre;
     std::string cheminFichier;
     QDateTime date;
-    Professeur* prof;
-    Classe* classe;
+    int idprof;
+    int idclasse;
 };
 
 #endif //Document

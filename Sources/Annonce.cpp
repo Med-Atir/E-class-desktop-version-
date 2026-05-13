@@ -2,18 +2,17 @@
 //IA S4 / Groupe 1
 #include "Annonce.h"
 #include "../Includes/Professeur.h"
+#include "../Database/Db.h"
 
-Annonce::Annonce(int id, std::string titre, std::string contenu, QDateTime date,const Professeur &prof,const Classe &cl) {
+Annonce::Annonce(int id, std::string titre, std::string contenu, QDateTime date,int idprof,int idclasse) {
     this->setId(id);
     this->setTitre(titre);
     this->setContenu(contenu);
     this->setDate(date);
-    this->prof = new Professeur(prof);
-    this->classe = new Classe(cl);
+    this->setProf(idprof);
+    this->setClasse(idclasse);
 }
 Annonce::~Annonce() {
-    delete this->prof;
-    delete this->classe;
 }
 
 int Annonce::getId() {
@@ -21,7 +20,7 @@ int Annonce::getId() {
 }
 
 Classe *Annonce::getClasse() {
-    return this->classe;
+    return DB::getClasse(this->idclasse);
 }
 
 std::string Annonce::getContenu() {
@@ -33,15 +32,15 @@ QDateTime Annonce::getDate() {
 }
 
 Professeur *Annonce::getProf() {
-    return this->prof;
+    return DB::getProf(this->idprof);
 }
 
 std::string Annonce::getTitre() {
     return this->titre;
 }
 
-void Annonce::setClasse(const Classe &c) {
-    this->classe = new Classe(c);
+void Annonce::setClasse(int c) {
+    this->idclasse = c;
 }
 
 void Annonce::setContenu(std::string contenu) {
@@ -56,10 +55,18 @@ void Annonce::setId(int id) {
     this->Id = id;
 }
 
-void Annonce::setProf(const Professeur &p) {
-    this->prof = new Professeur(p);
+void Annonce::setProf(int p) {
+    this->idprof = p;
 }
 
 void Annonce::setTitre(std::string titre) {
     this->titre = titre;
+}
+
+int Annonce::getIdclasse() {
+    return this->idclasse;
+}
+
+int Annonce::getIdprof() {
+    return this->idprof;
 }
