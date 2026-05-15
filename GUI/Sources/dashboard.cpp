@@ -1,0 +1,87 @@
+//Created by Mohammed atir on 12/05/2026
+//IA S4 / Groupe 1
+#include "../Includes/dashboard.h"
+#include "../../Includes/Etudiant.h"
+#include "../UI/ui_Dashboard.h"
+#include "../Includes/loginwindow.h"
+#include "../../Includes/Professeur.h"
+
+Dashboard::Dashboard(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::Dashboard){
+    ui->setupUi(this);
+    this->user = nullptr;
+    ui->centralwidget->layout()->setContentsMargins(0, 0, 0, 0);
+    ui->centralwidget->layout()->setSpacing(0);
+    ui->contenu->setCurrentIndex(0);
+    this->setMenuBar(nullptr);
+    this->setStatusBar(nullptr);
+    ui->sidebar->setMaximumHeight(16777215);
+    ui->sidebar->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+    while(ui->contenu->count() > 0) {
+        ui->contenu->removeWidget(ui->contenu->widget(0));
+    }
+    classesPage = new Classes(this);
+    homePage = new Home(this);
+    demandesPage = new Demandes(this);
+    devoirsPage  = new Devoirs(this);
+    questionsPage = new Questions(this);
+    annoncesPage = new Annonces(this);
+    parametresPage = new Parametres(this);
+    ui->contenu->addWidget(homePage);
+    ui->contenu->addWidget(classesPage);
+    ui->contenu->addWidget(demandesPage);
+    ui->contenu->addWidget(devoirsPage);
+    ui->contenu->addWidget(questionsPage);
+    ui->contenu->addWidget(annoncesPage);
+    ui->contenu->addWidget(parametresPage);
+    ui->contenu->setCurrentWidget(homePage);
+}
+
+Dashboard::~Dashboard(){
+    delete ui;
+    delete this->user;
+}
+
+void Dashboard::setUser(User *user) {
+    this->user = user;
+    this->setUpUI();
+}
+
+void Dashboard::on_btnDeconnecter_clicked(){
+    LoginWindow *login = new LoginWindow();
+    login->setAttribute(Qt::WA_DeleteOnClose);
+    login->showMaximized();
+    this->close();
+}
+
+void Dashboard::setUpUI() {
+    if (Professeur* prof = dynamic_cast<Professeur *>(user)) {
+
+    }
+    else if (Etudiant* etd = dynamic_cast<Etudiant *>(user)) {
+
+    }
+}
+
+void Dashboard::on_home_clicked() {
+    ui->contenu->setCurrentWidget(homePage);
+}
+void Dashboard::on_mesclasses_clicked() {
+    ui->contenu->setCurrentWidget(classesPage);
+}
+void Dashboard::on_mesannonces_clicked(){
+    ui->contenu->setCurrentWidget(annoncesPage);
+}
+void Dashboard::on_mesdevoirs_clicked() {
+    ui->contenu->setCurrentWidget(devoirsPage);
+}
+void Dashboard::on_mesquestion_clicked() {
+    ui->contenu->setCurrentWidget(questionsPage);
+}
+void Dashboard::on_mesdemandes_clicked() {
+    ui->contenu->setCurrentWidget(demandesPage);
+}
+void Dashboard::on_parametre_clicked() {
+    ui->contenu->setCurrentWidget(parametresPage);
+}
