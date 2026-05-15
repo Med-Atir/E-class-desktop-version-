@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dashboard</class>
+ <widget class="QMainWindow" name="Dashboard">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>561</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#centralwidget {
+    background-color: #F4F6F9;
+}
+
+#sidebar {
+    background-color: #2C363F; 
+}
+
+#sidebar QPushButton {
+    background-color: transparent;
+    color: #A0A5B1; 
+    border: none;
+    padding: 15px 20px;
+    text-align: left; 
+    font-size: 15px;
+}
+
+#sidebar QPushButton:hover {
+    background-color: #38444F;
+    color: #FFFFFF;
+}
+
+#sidebar QPushButton:checked {
+    background-color: #007BFF;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+#contenu {
+    background-color: transparent;
+}
+QLabel#lbllogo {
+    background-color: #22262a; 
+    color: white;
+    font-size: 22px;
+    font-weight: 900;
+    padding: 20px;
+    qproperty-alignment: 'AlignHCenter | AlignVCenter';
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="sidebar" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>561</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>161</width>
+        <height>561</height>
+       </size>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="lbllogo">
+         <property name="text">
+          <string>E-Class</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="home">
+         <property name="text">
+          <string>Home</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="mesclasses">
+         <property name="text">
+          <string>Mes classes</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="mesdemandes">
+         <property name="text">
+          <string>Mes Demandes</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="mesdevoirs">
+         <property name="text">
+          <string>Mes devoirs</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="mesquestion">
+         <property name="text">
+          <string>Mes questions</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="mesannonces">
+         <property name="text">
+          <string>Mes Annonces</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="parametre">
+         <property name="text">
+          <string>Parametres</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnDeconnecter">
+         <property name="text">
+          <string>Se deconnecter</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QStackedWidget" name="contenu">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="page_3"/>
+      <widget class="QWidget" name="page_4"/>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

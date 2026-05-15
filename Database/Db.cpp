@@ -6,6 +6,9 @@
 #include "../Includes/Classe.h"
 #include "../Includes/Professeur.h"
 #include "../Includes/Etudiant.h"
+#include "../Includes/User.h"
+#include <QByteArray>
+#include <QCryptographicHash>
 
 DB::DB() {
     // On spécifie qu'on utilise le driver SQLite
@@ -511,4 +514,53 @@ std::vector<Document> DB::getProfDocuments(int idprof) {
         }
     }
     return vect;
+}
+
+User *DB::Login(const std::string &email, const std::string &password) {
+    QSqlQuery requete;
+    std::string passhasher = hasherPass(password);
+    requete.prepare("SELECT * FROM user WHERE email = :email AND password = :password");
+    requete.bindValue(":email", QString::fromStdString(email));
+    requete.bindValue(":password", QString::fromStdString(passhasher));
+    if (requete.exec()) {
+        if (requete.next()) {
+            int id = requete.value("id").toInt();
+            std::string nom = requete.value("nom").toString().toStdString();
+            std::string email = requete.value("email").toString().toStdString();
+            std::string role = requete.value("role").toString().toStdString();
+            if (role == "professeur") {
+                return new Professeur(id, nom, email);
+            }
+            else if (role == "etudiant") {
+                return new Etudiant(id, nom, email);
+            }
+        }
+    }
+    else {
+        qDebug() << "Erreur SQL lors de l'authentification :" << requete.lastError().text();
+    }
+    return nullptr;
+}
+
+bool DB::Signup(const std::string &email, const std::string &nom, const std::string &password, const std::string &role) {
+    QSqlQuery requete;
+    std::string passhasher = hasherPass(password);
+    requete.prepare("INSERT INTO user (email,nom, password, role) VALUES (:email,:nom, :password, :role)");
+    requete.bindValue(":email",QString::fromStdString(email));
+    requete.bindValue(":nom",QString::fromStdString(nom));
+    requete.bindValue(":password",QString::fromStdString(passhasher));
+    requete.bindValue(":role",QString::fromStdString(role));
+    if (requete.exec()) {
+       return true;
+    }
+    else {
+        qDebug() << "Erreur CRITIQUE lors de l'inscription :" << requete.lastError().text();
+        return false;
+    }
+}
+
+std::string DB::hasherPass(const std::string &pass) {
+    QByteArray tabpass = QByteArray::fromStdString(pass);
+    QByteArray passhasher = QCryptographicHash::hash(tabpass,QCryptographicHash::Sha256);
+    return passhasher.toHex().toStdString();
 }

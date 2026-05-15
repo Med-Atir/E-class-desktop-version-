@@ -2,6 +2,8 @@
 //IA S4 / Groupe 1
 #include "../Includes/Professeur.h"
 #include "../Database/Db.h"
+#include "../Includes/Document.h"
+#include "../Includes/Devoir.h"
 
 Professeur::Professeur(int Id,std::string Nom,std::string Email):User(Id,Nom,Email) {
 }

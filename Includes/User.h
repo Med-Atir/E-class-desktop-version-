@@ -9,7 +9,7 @@ public:
     User();
     User(int Id,std::string Nom,std::string Email);
     User(const User& p);
-    ~User();//j'ai mette tous les getters comme constante pour que je peux manupiler les classes contants aussi
+    virtual  ~User();//j'ai mette tous les getters comme constante pour que je peux manupiler les classes contants aussi
     User& operator=(const User& p);
     std::string getNom() const;
     std::string getEmail() const;

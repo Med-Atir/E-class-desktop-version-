@@ -34,15 +34,15 @@ void Document::setTitre(std::string titre) {
 }
 
 void Document::setIdClasse(int cl) {
-    this->idclasse = cl;
+   this->idclasse = cl;
 }
 
 Professeur *Document::getProf() {
-    DB::getProf(this->idprof);
+   return DB::getProf(this->idprof);
 }
 
 void Document::setDate(QDateTime date) {
-    this->date = date;
+   this->date = date;
 }
 
 std::string Document::getTitre() {
@@ -54,7 +54,7 @@ QDateTime Document::getDate() {
 }
 
 Classe *Document::getClasse() {
-    DB::getClasse(this->idclasse);
+    return DB::getClasse(this->idclasse);
 }
 
 void Document::setId(int id) {

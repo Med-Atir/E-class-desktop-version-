@@ -17,6 +17,7 @@ class Devoir;
 class Classe;
 class Professeur;
 class Etudiant;
+class User;
 class DB {
 private:
     QSqlDatabase db;
@@ -54,6 +55,9 @@ public:
     static Classe* RechercherClasse(std::string code);
     static bool InscrireClasse(int idetd,Classe&);
     static std::vector<Question> getEtudiantQuestions(int idetd);
+    static User* Login(const std::string& email, const std::string& password);
+    static bool Signup(const std::string& email,const std::string& nom,const std::string& password,const std::string& role);
+    static std::string hasherPass(const std::string& pass);
 };
 
 #endif // DB_H

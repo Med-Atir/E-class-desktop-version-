@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>signupwindow</class>
+ <widget class="QMainWindow" name="signupwindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #007bff, stop:1 #6610f2);
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+QLabel {
+    color: white;
+    background-color: transparent;
+    qproperty-alignment: 'AlignHCenter | AlignVCenter';
+}
+
+QLabel#lblTitre {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+QLabel#lblSousTitre {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 30px;
+}
+
+QLineEdit {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #333333;
+    border: 2px solid transparent;
+    border-radius: 22px;
+    padding: 12px 20px;
+    font-size: 14px;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+QLineEdit:focus {
+    background-color: white;
+    border: 2px solid #00c6ff;
+}
+
+QRadioButton {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 8px 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+}
+
+QRadioButton::indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    background-color: transparent;
+    border: 2px solid white;
+}
+
+QRadioButton::indicator:checked {
+    background-color: #00c6ff;
+    border: 2px solid white;
+}
+
+QPushButton {
+    border-radius: 22px;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 250px;
+    max-width: 350px;
+}
+
+QPushButton#signup, QPushButton#btnLogin {
+    background-color: white;
+    color: #007bff;
+    border: none;
+}
+
+QPushButton#signup:hover, QPushButton#btnLogin:hover {
+    background-color: #f1f2f6;
+    color: #0056b3;
+}
+
+QPushButton#login, QPushButton#btnCreateAcc {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+QPushButton#login:hover, QPushButton#btnCreateAcc:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>29</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="1">
+     <widget class="QWidget" name="widget" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblTitre">
+         <property name="text">
+          <string>Bienvenu dans votre platforme d'apprentissage en-ligne:
+</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblSousTitre">
+         <property name="text">
+          <string>Creer un nouveau Compte</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="email"/>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="nom"/>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="password"/>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="etudiant">
+         <property name="text">
+          <string>Je suis un(e) Etudiant(e)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="professeur">
+         <property name="text">
+          <string>Je suis un(e) Professeur(e)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="signup">
+         <property name="text">
+          <string>Creer Compte</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="login">
+         <property name="text">
+          <string>Deja inscrit? Se Connecter</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>22</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="1">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>11</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>33</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
