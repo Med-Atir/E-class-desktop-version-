@@ -1,16 +1,10 @@
 //Created by Mohammed atir on 15/05/2026
 //IA S4 / Groupe 1
-//
-// Created by simoa on 15/05/2026.
-//
-
-// You may need to build the project (run Qt uic code generator) to get "ui_Home.h" resolved
-
 #include "../Includes/home.h"
 #include "../UI/ui_home.h"
+#include "../../Includes/User.h"
 
-
-Home::Home(QWidget *parent) : QWidget(parent), ui(new Ui::Home) {
+Home::Home(QWidget *parent,User* user) : QWidget(parent), ui(new Ui::Home) {
     ui->setupUi(this);
 }
 

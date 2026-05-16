@@ -13,6 +13,8 @@ public:
     ~Etudiant();
     Classe* RechercherClasse(std::string code);
     bool InscrireClasse(Classe&);
+    bool estInscri(int);
+    bool DemandeDejaAtt(int);
     std::vector<Classe> getCoursInscri();
     std::vector<Annonce> getAnnonces();
     std::vector<Devoir> getDevoirs();

@@ -36,3 +36,15 @@ std::vector<Question> Etudiant::getMesQuestions() {
 Classe* Etudiant::RechercherClasse(std::string code) {
     return DB::RechercherClasse(code);
 }
+
+bool Etudiant::estInscri(int idclass) {
+    if (DB::etdInscrit(this->getId(),idclass))
+        return true;
+    return false;
+}
+
+bool Etudiant::DemandeDejaAtt(int idclass) {
+    if (DB::demandeDejaAtt(this->getId(),idclass))
+        return true;
+    return false;
+}

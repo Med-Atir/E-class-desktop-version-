@@ -39,7 +39,7 @@ void DB::disconnect() {
     }
 }
 
-std::string DB::AddClasse(Classe &cl, int idprof) {
+bool DB::AddClasse(Classe &cl, int idprof) {
     QSqlQuery requete;
     requete.prepare("INSERT INTO classe (titre,code,description,prof_id) VALUES (:titre,:code,:description,:id)");
     requete.bindValue(":titre",QString::fromStdString(cl.getTitre()));
@@ -47,10 +47,10 @@ std::string DB::AddClasse(Classe &cl, int idprof) {
     requete.bindValue(":description",QString::fromStdString(cl.getDescription()));
     requete.bindValue(":id",idprof);
     if (requete.exec()) {
-        return cl.getCode();
+        return true;
     }
     else {
-        return "erreur";
+        return false;
     }
 }
 
@@ -272,14 +272,13 @@ bool DB::RejetDemande(Demande &demande) {
         return false;
 }
 
-bool DB::AddAnnoce(Annonce &annonce) {
+bool DB::AddAnnoce(Annonce& a) {
     QSqlQuery requete;
-    requete.prepare("INSERT INTO annonce(id,titre,contenu,id_prof,id_classe) VALUES (:id,:titre,:contenu,:idprof,:idclasse)");
-    requete.bindValue(":id",annonce.getId());
-    requete.bindValue(":titre",QString::fromStdString(annonce.getTitre()));
-    requete.bindValue(":contenu",QString::fromStdString(annonce.getContenu()));
-    requete.bindValue(":idprof",annonce.getIdprof());
-    requete.bindValue(":idclasse",annonce.getIdclasse());
+    requete.prepare("INSERT INTO annonce(titre,contenu,id_prof,id_classe) VALUES (:titre,:contenu,:idprof,:idclasse)");
+    requete.bindValue(":titre",QString::fromStdString(a.getTitre()));
+    requete.bindValue(":contenu",QString::fromStdString(a.getContenu()));
+    requete.bindValue(":idprof",a.getIdprof());
+    requete.bindValue(":idclasse",a.getIdclasse());
     if (requete.exec()) {
         return true;
     }
@@ -316,7 +315,7 @@ bool DB::AddReponse(Question& q,std::string reponse) {
 bool DB::DelAnnonce(Annonce &annonce) {
     QSqlQuery requete;
     requete.prepare("DELETE FROM annonce WHERE id = :id");
-    requete.bindValue("id",annonce.getId());
+    requete.bindValue(":id",annonce.getId());
     if (requete.exec())
         return true;
     else
@@ -468,6 +467,8 @@ std::vector<Question> DB::getProfQuestions(int idprof) {
 }
 
 bool DB::InscrireClasse(int idetd,Classe &classe) {
+    if (demandeDejaAtt(idetd,classe.getId()))
+        return false;
     QSqlQuery requete;
     requete.prepare("INSERT INTO demande(id_etudiant,id_classe) VALUES (:idetd,:idcl)");
     requete.bindValue(":idetd",idetd);
@@ -563,4 +564,31 @@ std::string DB::hasherPass(const std::string &pass) {
     QByteArray tabpass = QByteArray::fromStdString(pass);
     QByteArray passhasher = QCryptographicHash::hash(tabpass,QCryptographicHash::Sha256);
     return passhasher.toHex().toStdString();
+}
+
+bool DB::etdInscrit(int idetd,int idclasse) {
+    QSqlQuery requete;
+    requete.prepare("SELECT * FROM classe_etudiant WHERE classe_id = :idclass AND etudiant_id = :idetd");
+    requete.bindValue(":idclass",idclasse);
+    requete.bindValue(":idetd",idetd);
+    if (requete.exec()) {
+        if (requete.next()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool DB::demandeDejaAtt(int idetd, int idclasse) {
+    QSqlQuery requete;
+    requete.prepare("SELECT * FROM demande WHERE id_classe = :idclass AND id_etudiant = :idetd"
+                    "AND status = 'en_attente'");
+    requete.bindValue(":idclass",idclasse);
+    requete.bindValue(":idetd",idetd);
+    if (requete.exec()) {
+        if (requete.next()) {
+            return true;
+        }
+    }
+    return false;
 }

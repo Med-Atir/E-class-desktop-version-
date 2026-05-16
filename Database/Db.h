@@ -28,7 +28,7 @@ public:
     // Gestion de la connexion
     bool connect(const QString& dbName);
     void disconnect();
-    static std::string AddClasse(Classe& cl,int idprof);
+    static bool AddClasse(Classe& cl,int idprof);
     static Professeur* getProf(int idProf);
     static Classe* getClasse(int idClasse);
     static Etudiant* getEtudiant(int idEtd);
@@ -58,6 +58,8 @@ public:
     static User* Login(const std::string& email, const std::string& password);
     static bool Signup(const std::string& email,const std::string& nom,const std::string& password,const std::string& role);
     static std::string hasherPass(const std::string& pass);
+    static bool etdInscrit(int idetd,int idclasee);
+    static bool demandeDejaAtt(int idetd,int idclasse);
 };
 
 #endif // DB_H

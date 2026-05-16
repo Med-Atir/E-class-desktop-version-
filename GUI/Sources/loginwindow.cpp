@@ -13,6 +13,9 @@ LoginWindow::LoginWindow(QWidget *parent)
     , ui(new Ui::LoginWindow)
 {
     ui->setupUi(this);
+    ui->password->setEchoMode(QLineEdit::Password);
+    ui->email->setPlaceholderText("Veuillez enter votre email ici....");
+    ui->password->setPlaceholderText("Veuillez enter votre mot de passe ici....");
 }
 
 LoginWindow::~LoginWindow()

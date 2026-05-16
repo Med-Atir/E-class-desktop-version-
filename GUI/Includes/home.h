@@ -1,14 +1,11 @@
 //IA S4 / Groupe 1
-//
-// Created by simoa on 15/05/2026.
-//
 
 #ifndef PFM_HOME_H
 #define PFM_HOME_H
 
 #include <QWidget>
 
-
+class User;
 QT_BEGIN_NAMESPACE
 
 namespace Ui {
@@ -21,12 +18,13 @@ class Home : public QWidget {
     Q_OBJECT
 
 public:
-    explicit Home(QWidget *parent = nullptr);
+    explicit Home(QWidget *parent = nullptr,User* user = nullptr);
 
     ~Home() override;
 
 private:
     Ui::Home *ui;
+    User* user;
 };
 
 

@@ -15,7 +15,7 @@ class Professeur:public User {
 public:
     Professeur(int Id,std::string Nom,std::string Email);
     ~Professeur();
-    std::string AddClasse(Classe&);
+    bool AddClasse(Classe&);
     bool DelClasse(Classe&);
     std::vector<Demande> getDemandes();
     std::vector<Classe> getMesClasses();

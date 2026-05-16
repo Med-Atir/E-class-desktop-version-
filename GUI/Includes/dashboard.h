@@ -2,13 +2,13 @@
 //IA S4 / Groupe 1
 #ifndef _DASHBOARDPROF_H_
 #define _DASHBOARDPROF_H_
-#include "classes.h"
-#include "annonces.h"
-#include "demandes.h"
-#include "devoirs.h"
+#include "classesPage.h"
+#include "annoncesPage.h"
+#include "demandesPage.h"
+#include "devoirsPage.h"
 #include "home.h"
 #include "parametres.h"
-#include "questions.h"
+#include "questionsPage.h"
 #include <QMainWindow>
 
 class User;
@@ -32,19 +32,19 @@ private slots:
     void on_mesclasses_clicked();
     void on_mesannonces_clicked();
     void on_mesdevoirs_clicked();
-    void on_mesquestion_clicked();
+    void on_mesquestions_clicked();
     void on_mesdemandes_clicked();
     void on_parametre_clicked();
 
 private:
     Ui::Dashboard *ui;
     User* user;
-    Classes *classesPage;
-    Annonces* annoncesPage;
-    Demandes* demandesPage;
-    Devoirs* devoirsPage;
+    ClassesPage *classesPage;
+    AnnoncesPage* annoncesPage;
+    DemandesPage* demandesPage;
+    DevoirsPage* devoirsPage;
     Home* homePage;
     Parametres* parametresPage;
-    Questions* questionsPage;
+    QuestionsPage* questionsPage;
 };
 #endif // _DASHBOARD_H_

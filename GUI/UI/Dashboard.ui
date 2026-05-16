@@ -137,7 +137,7 @@ QLabel#lbllogo {
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="mesquestion">
+        <widget class="QPushButton" name="mesquestions">
          <property name="text">
           <string>Mes questions</string>
          </property>
@@ -170,7 +170,7 @@ QLabel#lbllogo {
     <item>
      <widget class="QStackedWidget" name="contenu">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page_3"/>
       <widget class="QWidget" name="page_4"/>

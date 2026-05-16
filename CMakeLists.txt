@@ -36,35 +36,33 @@ add_executable(PFM
         Sources/Vect.cpp
         Sources/Classe.cpp
         main.cpp
-        GUI/Sources/loginwindow.cpp
-        GUI/Includes/loginwindow.h
-        GUI/UI/loginwindow.ui
-        GUI/Sources/signupwindow.cpp
-        GUI/Includes/signupwindow.h
-        GUI/UI/signupwindow.ui
-        GUI/Includes/dashboard.h
-        GUI/Sources/dashboard.cpp
-        GUI/Sources/dashboard.cpp
-        GUI/Sources/classes.cpp
-        GUI/Includes/classes.h
-        GUI/UI/classes.ui
-        GUI/Sources/demandes.cpp
-        GUI/Includes/demandes.h
-        GUI/UI/demandes.ui
-        GUI/Sources/devoirs.cpp
-        GUI/Includes/devoirs.h
-        GUI/UI/devoirs.ui
-        GUI/Sources/questions.cpp
-        GUI/Includes/questions.h
-        GUI/UI/questions.ui
-        GUI/Sources/annonces.cpp
-        GUI/Includes/annonces.h
-        GUI/UI/annonces.ui
-        GUI/Sources/parametres.cpp
-        GUI/Includes/parametres.h
-        GUI/UI/parametres.ui
-        GUI/Sources/home.cpp
+        GUI/Includes/classesPage.h
+        GUI/Includes/annoncesPage.h
+        GUI/Includes/demandesPage.h
+        GUI/Includes/devoirsPage.h
         GUI/Includes/home.h
+        GUI/Includes/dashboard.h
+        GUI/Includes/loginwindow.h
+        GUI/Includes/parametres.h
+        GUI/Includes/questionsPage.h
+        GUI/Includes/signupwindow.h
+        GUI/Sources/classesPage.cpp
+        GUI/Sources/annoncesPage.cpp
+        GUI/Sources/dashboard.cpp
+        GUI/Sources/demandesPage.cpp
+        GUI/Sources/devoirsPage.cpp
+        GUI/Sources/home.cpp
+        GUI/Sources/loginwindow.cpp
+        GUI/Sources/parametres.cpp
+        GUI/Sources/questionsPage.cpp
+        GUI/Sources/signupwindow.cpp
+        GUI/UI/classesPage.ui
+        GUI/UI/Dashboard.ui
+        GUI/UI/demandesPage.ui
+        GUI/UI/devoirsPage.ui
         GUI/UI/home.ui
+        GUI/UI/parametres.ui
+        GUI/UI/questionsPage.ui
+        GUI/UI/signupwindow.ui
 )
 target_link_libraries(PFM PRIVATE Qt6::Sql Qt6::Widgets)

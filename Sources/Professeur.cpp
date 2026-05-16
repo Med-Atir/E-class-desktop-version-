@@ -12,7 +12,7 @@ Professeur::~Professeur() {
 
 }
 
-std::string Professeur::AddClasse(Classe& cl) {
+bool Professeur::AddClasse(Classe& cl) {
    return DB::AddClasse(cl,this->Id);
 }
 

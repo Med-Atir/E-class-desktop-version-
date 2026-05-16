@@ -21,12 +21,12 @@ Dashboard::Dashboard(QWidget *parent)
     while(ui->contenu->count() > 0) {
         ui->contenu->removeWidget(ui->contenu->widget(0));
     }
-    classesPage = new Classes(this);
+    classesPage = new ClassesPage(this);
     homePage = new Home(this);
-    demandesPage = new Demandes(this);
-    devoirsPage  = new Devoirs(this);
-    questionsPage = new Questions(this);
-    annoncesPage = new Annonces(this);
+    demandesPage = new DemandesPage(this);
+    devoirsPage  = new DevoirsPage(this);
+    questionsPage = new QuestionsPage(this);
+    annoncesPage = new AnnoncesPage(this);
     parametresPage = new Parametres(this);
     ui->contenu->addWidget(homePage);
     ui->contenu->addWidget(classesPage);
@@ -69,14 +69,16 @@ void Dashboard::on_home_clicked() {
 }
 void Dashboard::on_mesclasses_clicked() {
     ui->contenu->setCurrentWidget(classesPage);
+    classesPage->AfficherClasses(this->user);
 }
 void Dashboard::on_mesannonces_clicked(){
     ui->contenu->setCurrentWidget(annoncesPage);
+    annoncesPage->afficherAnnonces(this->user);
 }
 void Dashboard::on_mesdevoirs_clicked() {
     ui->contenu->setCurrentWidget(devoirsPage);
 }
-void Dashboard::on_mesquestion_clicked() {
+void Dashboard::on_mesquestions_clicked() {
     ui->contenu->setCurrentWidget(questionsPage);
 }
 void Dashboard::on_mesdemandes_clicked() {
