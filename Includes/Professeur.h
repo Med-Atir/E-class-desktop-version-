@@ -17,6 +17,7 @@ public:
     ~Professeur();
     bool AddClasse(Classe&);
     bool DelClasse(Classe&);
+    bool addDevoir(Devoir&);
     std::vector<Demande> getDemandes();
     std::vector<Classe> getMesClasses();
     bool AccepteDemande(Demande&);

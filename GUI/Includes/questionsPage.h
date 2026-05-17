@@ -20,9 +20,10 @@ class QuestionsPage : public QWidget {
 
 public:
     explicit QuestionsPage(QWidget *parent = nullptr,User* user = nullptr);
-
     ~QuestionsPage() override;
-
+    void afficherQuestion(User*);
+private slots:
+    void on_poser_clicked();
 private:
     Ui::QuestionsPage *ui;
     User* user;

@@ -29,9 +29,8 @@ void LoginWindow::on_login_clicked()
     User* user = DB::Login(email.toStdString(),password.toStdString());
     if (user != nullptr) {
             QMessageBox::information(this,"Succes","Mrhba bik");
-            Dashboard *dashboard = new Dashboard();
+            Dashboard *dashboard = new Dashboard(user);
             dashboard->setAttribute(Qt::WA_DeleteOnClose);
-            dashboard->setUser(user);
             dashboard->showMaximized();
             this->close();
     }

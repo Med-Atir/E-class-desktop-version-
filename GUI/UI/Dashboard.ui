@@ -132,7 +132,7 @@ QLabel#lbllogo {
        <item>
         <widget class="QPushButton" name="mesdevoirs">
          <property name="text">
-          <string>Mes devoirs</string>
+          <string>Mes devoirs et Cours</string>
          </property>
         </widget>
        </item>

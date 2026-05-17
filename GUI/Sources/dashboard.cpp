@@ -6,11 +6,11 @@
 #include "../Includes/loginwindow.h"
 #include "../../Includes/Professeur.h"
 
-Dashboard::Dashboard(QWidget *parent)
+Dashboard::Dashboard(User* user,QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Dashboard){
     ui->setupUi(this);
-    this->user = nullptr;
+    this->setUser(user);
     ui->centralwidget->layout()->setContentsMargins(0, 0, 0, 0);
     ui->centralwidget->layout()->setSpacing(0);
     ui->contenu->setCurrentIndex(0);
@@ -37,6 +37,7 @@ Dashboard::Dashboard(QWidget *parent)
     ui->contenu->addWidget(annoncesPage);
     ui->contenu->addWidget(parametresPage);
     ui->contenu->setCurrentWidget(homePage);
+    homePage->afficherStats(this->user);
 }
 
 Dashboard::~Dashboard(){
@@ -67,6 +68,7 @@ void Dashboard::setUpUI() {
 
 void Dashboard::on_home_clicked() {
     ui->contenu->setCurrentWidget(homePage);
+    homePage->afficherStats(this->user);
 }
 void Dashboard::on_mesclasses_clicked() {
     ui->contenu->setCurrentWidget(classesPage);
@@ -78,9 +80,11 @@ void Dashboard::on_mesannonces_clicked(){
 }
 void Dashboard::on_mesdevoirs_clicked() {
     ui->contenu->setCurrentWidget(devoirsPage);
+    devoirsPage->afficherFiles(this->user);
 }
 void Dashboard::on_mesquestions_clicked() {
     ui->contenu->setCurrentWidget(questionsPage);
+    questionsPage->afficherQuestion(this->user);
 }
 void Dashboard::on_mesdemandes_clicked() {
     ui->contenu->setCurrentWidget(demandesPage);

@@ -34,7 +34,7 @@ public:
     static bool DelClasse(Classe &cl);
     static std::vector<Demande> getDemandes(int idprof);
     static std::vector<Devoir> getEtudiantDevoirs(int idetd);
-    static void addQuestion(Question &q);
+    static bool addQuestion(Question &q);
     static std::vector<Annonce> getEtudiantAnnonces(int idetd);
     static std::vector<Classe> getEtudiantclasse(int idetd);
     static std::vector<Classe> getProfclasse(int idprof);
@@ -65,6 +65,9 @@ public:
     static std::vector<Demande> getDemandesEtd(int idetd);
     static std::string getNomProf(int);
     static bool AnnulerDemandeEtd(int,int);
+    static int getIdprofByClass(int idcl);
+    static bool addDevoir(Devoir&);
+    static std::vector<Document> getEtdDocuments(int idetd);
 };
 
 #endif // DB_H

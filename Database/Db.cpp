@@ -167,7 +167,7 @@ std::vector<Devoir> DB::getEtudiantDevoirs(int idetd) {
 return vect;
 }
 
-void DB::addQuestion(Question &q) {
+bool DB::addQuestion(Question &q) {
     QSqlQuery requete;
     requete.prepare("INSERT INTO question(contenu,id_etudiant,id_prof,id_classe) VALUES (:con,:id1,:id2,:id3)");
     requete.bindValue(":con",QString::fromStdString(q.getContenu()));
@@ -175,9 +175,9 @@ void DB::addQuestion(Question &q) {
     requete.bindValue(":id2",q.getIdProf());
     requete.bindValue(":id3",q.getIdClasse());
     if (requete.exec())
-        std::cout<<"Question a ete ajouter avec succes!!"<<std::endl;
+        return true;
     else
-        std::cout<<"Un probleme servu!!"<<std::endl;
+        return false;
 }
 
 std::vector<Annonce> DB::getEtudiantAnnonces(int idetd) {
@@ -311,11 +311,11 @@ bool DB::AddDocument(Document& document,Classe &classe) {
 bool DB::AddReponse(Question& q,std::string reponse) {
     QSqlQuery requete;
     requete.prepare("UPDATE question SET est_reponde = :e,date_reponse = :date,reponse = :reponse WHERE id = :id");
-    requete.bindValue("id",q.getId());
+    requete.bindValue(":id",q.getId());
     requete.bindValue(":e",1);
-    requete.bindValue("date_reponse",QDateTime::currentDateTime());
-    requete.bindValue("reponse",QString::fromStdString(reponse));
-    if (requete.exec())
+    requete.bindValue(":date",QDateTime::currentDateTime());
+    requete.bindValue(":reponse",QString::fromStdString(reponse));
+    if (requete.exec() && requete.numRowsAffected() > 0)
         return true;
     else
         return false;
@@ -325,7 +325,7 @@ bool DB::DelAnnonce(Annonce &annonce) {
     QSqlQuery requete;
     requete.prepare("DELETE FROM annonce WHERE id = :id");
     requete.bindValue(":id",annonce.getId());
-    if (requete.exec())
+    if (requete.exec() && requete.numRowsAffected() > 0)
         return true;
     else
         return false;
@@ -670,4 +670,73 @@ bool DB::AnnulerDemandeEtd(int idetd,int iddemande) {
     if (requete.exec())
         return true;
     return false;
+}
+
+int DB::getIdprofByClass(int idcl) {
+    QSqlQuery requete;
+    requete.prepare("SELECT prof_id FROM classe WHERE id=:id");
+    requete.bindValue(":id",idcl);
+    if (requete.exec()) {
+        if (requete.next()) {
+            int idprof = requete.value("prof_id").toInt();
+            return idprof;
+        }
+    }
+    return 0;
+}
+
+/*bool DB::addDevoir(Devoir &devoir) {
+    QSqlQuery requete;
+    requete.prepare("INSERT INTO devoir(titre,consigne,chemin_fichier,id_prof,id_classe,date_poste,deadline"
+                    "VALUES (:titre,:consigne,:chemin,:idprof,:idclass,:date,:deadline)");
+    requete.bindValue(":titre",QString::fromStdString(devoir.getTitre()));
+    requete.bindValue(":consigne",QString::fromStdString(devoir.getConsigne()));
+    requete.bindValue(":chemin",QString::fromStdString(devoir.getCheminFichier()));
+    requete.bindValue(":idprof",devoir.getIdprof());
+    requete.bindValue(":idclass",devoir.getIdclasse());
+    requete.bindValue(":date",devoir.getDate());
+    requete.bindValue(":deadline",QString::fromStdString(devoir.getdeadline()));
+    if (requete.exec())
+        return true;
+    return false;
+}
+*/
+bool DB::addDevoir(Devoir &devoir) {
+    QSqlQuery requete;
+    requete.prepare("INSERT INTO devoir (titre, consigne, chemin_fichier, id_prof, id_classe, deadline) "
+                    "VALUES (?, ?, ?, ?, ?, ?)");
+    requete.addBindValue(QString::fromStdString(devoir.getTitre()));
+    requete.addBindValue(QString::fromStdString(devoir.getConsigne()));
+    requete.addBindValue(QString::fromStdString(devoir.getCheminFichier()));
+    requete.addBindValue(devoir.getIdprof());
+    requete.addBindValue(devoir.getIdclasse());
+    requete.addBindValue(QString::fromStdString(devoir.getdeadline()));
+    if (requete.exec()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+std::vector<Document> DB::getEtdDocuments(int idetd) {
+    QSqlQuery requete;
+    std::vector<Document> mesdocs;
+    requete.prepare("SELECT * FROM document "
+                    "INNER JOIN classe_etudiant "
+                    "ON document.id_classe = classe_etudiant.classe_id "
+                    "WHERE classe_etudiant.etudiant_id = :id");
+    requete.bindValue(":id",idetd);
+    if (requete.exec()) {
+        while (requete.next()) {
+            int id = requete.value("id").toInt();
+            std::string titre = requete.value("titre").toString().toStdString();
+            std::string chemin = requete.value("chemin_fichier").toString().toStdString();
+            int idclasse = requete.value("id_classe").toInt();
+            int idprof = requete.value("id_prof").toInt();
+            QDateTime date = requete.value("date_upload").toDateTime();
+            Document document(id,titre,chemin,date,idprof,idclasse);
+            mesdocs.push_back(document);
+        }
+    }
+    return mesdocs;
 }

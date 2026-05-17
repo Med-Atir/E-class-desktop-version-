@@ -21,7 +21,8 @@ public:
     std::vector<Devoir> getDevoirs();
     std::vector<Question> getMesQuestions();
     std::vector<Demande> getMesDemandes();
-    void addQuestion(Question&);
+    std::vector<Document> getMesDocuments();
+    bool addQuestion(Question&);
 };
 
 #endif //Etudiant

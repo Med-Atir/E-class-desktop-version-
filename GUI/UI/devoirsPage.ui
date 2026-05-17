@@ -6,19 +6,108 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>1259</width>
+    <height>569</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Devoirs</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+    font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, Arial, sans-serif;
+    font-size: 14px;
+    color: #2c3e50; 
+}
+
+QLabel {
+    font-size: 22px;
+    font-weight: bold;
+    color: brown; 
+    padding-bottom: 5px;
+}
+QTableWidget {
+    background-color: #ffffff;
+    alternate-background-color: #f8f9fa; 
+    border: 1px solid #e0e0e0;
+    border-radius: 8px; 
+    gridline-color: #eeeeee;
+    selection-background-color: #3498db; 
+    selection-color: #ffffff;
+    padding: 5px;
+}
+
+QHeaderView::section {
+    background-color: #2c3e50; 
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 8px;
+    border: none;
+    border-right: 1px solid #34495e;
+}
+
+QTableCornerButton::section {
+    background-color: #2c3e50;
+    border: none;
+}
+
+QLineEdit, QTextEdit {
+    background-color: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 8px;
+    color: #333333;
+}
+
+QLineEdit:focus, QTextEdit:focus {
+    border: 2px solid #3498db;
+    background-color: #fbfdff;
+}
+QComboBox {
+    background-color: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 6px 15px;
+    color: #333333;
+    font-weight: bold;
+}
+
+QComboBox:hover, QComboBox:focus {
+    border: 2px solid #3498db;
+}
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 30px;
+    border-left: 1px solid #e2e8f0;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+QPushButton {
+    background-color: #3498db; 
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+QPushButton:hover {
+    background-color: #2980b9; 
+}
+
+QPushButton:pressed {
+    background-color: #1f618d;
+}</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>91</width>
+     <width>221</width>
      <height>31</height>
     </rect>
    </property>
@@ -29,7 +118,201 @@
     font-weight: bold;</string>
    </property>
    <property name="text">
-    <string>Devoirs</string>
+    <string>Cours:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="titreFichier">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>390</y>
+     <width>241</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="addlbl">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>340</y>
+     <width>331</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  color: #2C3E50;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;</string>
+   </property>
+   <property name="text">
+    <string>Ajouter un devoir ou cours:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="choisirFichier">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>390</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:green;</string>
+   </property>
+   <property name="text">
+    <string>Choisir fichier</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="poster">
+   <property name="geometry">
+    <rect>
+     <x>580</x>
+     <y>590</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Poster</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="cours">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>440</y>
+     <width>98</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cours</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="devoir">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>440</y>
+     <width>98</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>Devoir</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="consigne">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>490</y>
+     <width>331</width>
+     <height>141</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QDateTimeEdit" name="deadline">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>530</y>
+     <width>194</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="classe">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>590</y>
+     <width>161</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="msgVide">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>60</y>
+     <width>901</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  color: #2C3E50;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tabdocs">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>551</width>
+     <height>301</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>0</y>
+     <width>221</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  color: #2C3E50;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;</string>
+   </property>
+   <property name="text">
+    <string>Devoirs:</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tabdevoirs">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>30</y>
+     <width>541</width>
+     <height>301</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="chemin">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>390</y>
+     <width>711</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  color: #2C3E50;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

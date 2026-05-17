@@ -117,7 +117,6 @@ void AnnoncesPage::on_posterAnnonce_clicked() {
         QDateTime dateposte = QDateTime::currentDateTime();
         Annonce annonce(1, titre.toStdString(), contenu.toStdString(), dateposte, professeur->getId(), idclasse);
         bool estInserer = professeur->AddAnnoce(annonce);
-
         if (estInserer) {
             QMessageBox::information(this, "Succs", "Annonce ajouter avec succes");
             ui->titreAnnonce->clear();

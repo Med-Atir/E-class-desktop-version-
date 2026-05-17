@@ -9,8 +9,8 @@ Etudiant::Etudiant(int id, std::string Nom, std::string Email) :User(id,Nom,Emai
 Etudiant::Etudiant(const Etudiant &e):User(e) {}
 Etudiant::~Etudiant(){}
 
-void Etudiant::addQuestion(Question &q) {
-   return;DB::addQuestion(q);
+bool Etudiant::addQuestion(Question &q) {
+   return DB::addQuestion(q);
 }
 
 std::vector<Annonce> Etudiant::getAnnonces() {
@@ -51,4 +51,8 @@ std::vector<Demande> Etudiant::getMesDemandes() {
 
 bool Etudiant::AnnulerDemande(int dem) {
     return DB::AnnulerDemandeEtd(this->Id,dem);
+}
+
+std::vector<Document> Etudiant::getMesDocuments() {
+    return DB::getEtdDocuments(this->Id);
 }

@@ -21,7 +21,7 @@ class Dashboard : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit Dashboard(QWidget *parent = nullptr);
+    explicit Dashboard(User* user,QWidget *parent = nullptr);
     ~Dashboard();
     void setUser(User*);
     void setUpUI();

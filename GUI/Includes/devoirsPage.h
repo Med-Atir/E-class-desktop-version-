@@ -19,8 +19,11 @@ class DevoirsPage : public QWidget {
 
 public:
     explicit DevoirsPage(QWidget *parent = nullptr,User* user = nullptr);
-
     ~DevoirsPage() override;
+    void afficherFiles(User* user);
+private slots:
+    void on_poster_clicked();
+    void on_choisirFichier_clicked();
 
 private:
     Ui::DevoirsPage *ui;

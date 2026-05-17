@@ -19,8 +19,8 @@ class Home : public QWidget {
 
 public:
     explicit Home(QWidget *parent = nullptr,User* user = nullptr);
-
     ~Home() override;
+    void afficherStats(User* currentUser);
 
 private:
     Ui::Home *ui;

@@ -25,7 +25,7 @@ public:
     void setDate(QDateTime date);
     void setIdProf(int idpr);
     void setIdClasse(int idcl);
-private:
+protected:
     int id;
     std::string titre;
     std::string cheminFichier;

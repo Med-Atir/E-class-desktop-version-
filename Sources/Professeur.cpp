@@ -71,3 +71,7 @@ std::vector<Question> Professeur::getQuestions() {
 std::vector<Devoir> Professeur::getDevoirs() {
    return DB::getProfDevoirs(this->getId());
 }
+
+bool Professeur::addDevoir(Devoir &devoir) {
+   return DB::addDevoir(devoir);
+}
