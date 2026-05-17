@@ -38,13 +38,17 @@ Classe* Etudiant::RechercherClasse(std::string code) {
 }
 
 bool Etudiant::estInscri(int idclass) {
-    if (DB::etdInscrit(this->getId(),idclass))
-        return true;
-    return false;
+    return DB::etdInscrit(this->getId(),idclass);
 }
 
 bool Etudiant::DemandeDejaAtt(int idclass) {
-    if (DB::demandeDejaAtt(this->getId(),idclass))
-        return true;
-    return false;
+    return DB::demandeDejaAtt(this->Id,idclass);
+}
+
+std::vector<Demande> Etudiant::getMesDemandes() {
+    return DB::getDemandesEtd(this->Id);
+}
+
+bool Etudiant::AnnulerDemande(int dem) {
+    return DB::AnnulerDemandeEtd(this->Id,dem);
 }

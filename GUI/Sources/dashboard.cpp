@@ -28,6 +28,7 @@ Dashboard::Dashboard(QWidget *parent)
     questionsPage = new QuestionsPage(this);
     annoncesPage = new AnnoncesPage(this);
     parametresPage = new Parametres(this);
+    connect(parametresPage,&Parametres::demandeDeconnection,this,&Dashboard::on_btnDeconnecter_clicked);
     ui->contenu->addWidget(homePage);
     ui->contenu->addWidget(classesPage);
     ui->contenu->addWidget(demandesPage);
@@ -83,7 +84,9 @@ void Dashboard::on_mesquestions_clicked() {
 }
 void Dashboard::on_mesdemandes_clicked() {
     ui->contenu->setCurrentWidget(demandesPage);
+    demandesPage->afficherDemandes(this->user);
 }
 void Dashboard::on_parametre_clicked() {
     ui->contenu->setCurrentWidget(parametresPage);
+    parametresPage->setUser(this->user);
 }

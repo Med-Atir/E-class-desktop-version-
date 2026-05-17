@@ -2,6 +2,7 @@
 //CNE: K133125030
 //Filiere: IA/4 G:1
 #include "../Includes/User.h"
+#include "../Database/Db.h"
 using namespace std; /* puique nous avons dans le fichier CPP nous pouvons mettre tous utilise
 espace de noms std, aucun harm (risque car on inclut seulement le header)
 */
@@ -55,4 +56,16 @@ int User::getId() const {
 
 void User::setId(int id) {
     this->Id = id;
+}
+
+bool User::DeleteAcc() {
+    return DB::delAccount(this->Id);
+}
+
+bool User::changeremail(std::string mail) {
+    return DB::changerEmail(this->Id,mail);
+}
+
+bool User::changerNom(std::string name) {
+    return DB::changerNom(this->Id,name);
 }

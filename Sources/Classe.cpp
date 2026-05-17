@@ -1,6 +1,7 @@
 //Created by Mohammed atir on 12/05/2026
 //IA S4 / Groupe 1
 #include "../Includes/Classe.h"
+#include "../Database/Db.h"
 
 Classe::Classe(int id,int idprof, std::string titre, std::string code, std::string description) {
     this->setId(id);
@@ -58,4 +59,8 @@ int Classe::getIdProf() {
 
 void Classe::setIdProf(int id) {
     this->Idprof = id;
+}
+
+std::string Classe::getNomProf() {
+    return DB::getNomProf(this->Idprof);
 }

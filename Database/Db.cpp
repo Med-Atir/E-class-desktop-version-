@@ -129,7 +129,7 @@ std::vector<Demande> DB::getDemandes(int idprof) {
     std::vector<Demande> vect;
     QSqlQuery requete;
     requete.prepare("SELECT * FROM demande "
-                    "INNER JOIN classe ON demande.id_class = classe.id"
+                    "INNER JOIN classe ON demande.id_classe = classe.id"
                     " WHERE classe.prof_id = :id AND demande.status = 'en_attente'");
     requete.bindValue(":id",idprof);
     if (requete.exec()){
@@ -187,7 +187,7 @@ std::vector<Annonce> DB::getEtudiantAnnonces(int idetd) {
                     ", annonce.contenu AS annonce_contenu,annonce.id_prof AS annonce_idprof,"
                     " annonce.id_classe AS annonce_idclasse,annonce.date_poste AS annonce_date_poste"
                     " FROM annonce"
-                    " INNER JOIN classe_etudiant ON annonce.classe_id = classe_etudiant.classe_id "
+                    " INNER JOIN classe_etudiant ON annonce.id_classe = classe_etudiant.classe_id "
                     "WHERE classe_etudiant.etudiant_id = :id_etd");
     requete.bindValue(":id_etd",idetd);
     if (requete.exec()) {
@@ -254,10 +254,19 @@ std::vector<Classe> DB::getProfclasse(int idprof) {
 
 bool DB::AccepteDemande(Demande &demande) {
     QSqlQuery requete;
-    requete.prepare("UPDATE demande SET status = 'accepte' WHERE id = :id");
+    requete.prepare("UPDATE demande SET status = 'accepte' WHERE id = :id AND status ='en_attente'");
     requete.bindValue(":id",demande.getId());
-    if (requete.exec())
+    if (requete.exec()) {
+        QSqlQuery requete2;
+        requete2.prepare("INSERT INTO classe_etudiant (classe_id, etudiant_id) "
+                         "SELECT id_classe, id_etudiant FROM demande WHERE id = :id");
+        requete2.bindValue(":id",demande.getId());//j'ai utiliser cette requete imbrique pour corriger une bugg
+        //car dans la methode qui appelle cette methode j'ai initialiser la classe demande par des valeurs imaginaire;
+        if (requete2.exec())
         return true;
+        else
+            return false;
+    }
     else
         return false;
 }
@@ -582,7 +591,7 @@ bool DB::etdInscrit(int idetd,int idclasse) {
 bool DB::demandeDejaAtt(int idetd, int idclasse) {
     QSqlQuery requete;
     requete.prepare("SELECT * FROM demande WHERE id_classe = :idclass AND id_etudiant = :idetd"
-                    "AND status = 'en_attente'");
+                    " AND status = 'en_attente'");
     requete.bindValue(":idclass",idclasse);
     requete.bindValue(":idetd",idetd);
     if (requete.exec()) {
@@ -590,5 +599,75 @@ bool DB::demandeDejaAtt(int idetd, int idclasse) {
             return true;
         }
     }
+    return false;
+}
+
+bool DB::delAccount(int iduser) {
+    QSqlQuery requete;
+    requete.prepare("DELETE FROM user WHERE id = :id");
+    requete.bindValue(":id",iduser);
+    if (requete.exec())
+        return true;
+    return false;
+}
+
+bool DB::changerEmail(int iduser, std::string email) {
+    QSqlQuery requete;
+    requete.prepare("UPDATE user SET email = :email WHERE id = :id");
+    QString mail = QString::fromStdString(email);
+    requete.bindValue(":email",mail);
+    requete.bindValue(":id",iduser);
+    if (requete.exec())
+        return true;
+    return false;
+}
+
+bool DB::changerNom(int iduser, std::string nom) {
+    QSqlQuery requete;
+    requete.prepare("UPDATE user SET nom = :nom WHERE id = :id");
+    QString name = QString::fromStdString(nom);
+    requete.bindValue(":nom",name);
+    requete.bindValue(":id",iduser);
+    if (requete.exec())
+        return true;
+    return false;
+}
+
+std::vector<Demande> DB::getDemandesEtd(int idetd) {
+    std::vector<Demande> mesdemandes;
+    QSqlQuery requete;
+    requete.prepare("SELECT * FROM demande WHERE id_etudiant = :idE AND status = 'en_attente'");
+    requete.bindValue(":idE",idetd);
+    if (requete.exec()) {
+        while (requete.next()) {
+            int id = requete.value("id").toInt();
+            std::string status = requete.value("status").toString().toStdString();
+            QDateTime date = requete.value("date_demande").toDateTime();
+            int idetd = requete.value("id_etudiant").toInt();
+            int idclasse = requete.value("id_classe").toInt();
+            Demande demande(id,status,date,idetd,idclasse);
+            mesdemandes.push_back(demande);
+        }
+    }
+    return mesdemandes;
+}
+std::string DB::getNomProf(int idprof) {
+    QSqlQuery requete;
+    requete.prepare("SELECT nom FROM user WHERE id = :idpr");
+    requete.bindValue(":idpr",idprof);
+    if (requete.exec()) {
+        if (requete.next())
+            return requete.value("nom").toString().toStdString();
+    }
+    return "N'existe pas";
+}
+
+bool DB::AnnulerDemandeEtd(int idetd,int iddemande) {
+    QSqlQuery requete;
+    requete.prepare("DELETE FROM demande WHERE id = :id AND id_etudiant = :id2 AND status = 'en_attente'");
+    requete.bindValue(":id",iddemande);
+    requete.bindValue(":id2",idetd);
+    if (requete.exec())
+        return true;
     return false;
 }

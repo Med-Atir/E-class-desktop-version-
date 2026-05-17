@@ -48,17 +48,19 @@ void ClassesPage::AfficherClasses(User* currentUser) {
         if (mesClasses.size() > 0) {
             ui->mesClasseA->clearContents();
             ui->mesClasseA->setRowCount(mesClasses.size());
-            ui->mesClasseA->setColumnCount(2);
-            ui->mesClasseA->setHorizontalHeaderLabels({"Titre de la classe", "Description"});
+            ui->mesClasseA->setColumnCount(3);
+            ui->mesClasseA->setHorizontalHeaderLabels({"Titre de la classe","Code", "Description"});
             ui->mesClasseA->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
             for (size_t i = 0; i < mesClasses.size(); ++i) {
                 int id = mesClasses[i].getId();
                 QString titre = QString::fromStdString(mesClasses[i].getTitre());
+                QString code = QString::fromStdString(mesClasses[i].getCode());
                 QString description = QString::fromStdString(mesClasses[i].getDescription());
                 ui->delClasse->addItem(titre, id);
                 ui->mesClasseA->setItem(i, 0, new QTableWidgetItem(titre));
-                ui->mesClasseA->setItem(i, 1, new QTableWidgetItem(description));
+                ui->mesClasseA->setItem(i, 1, new QTableWidgetItem(code));
+                ui->mesClasseA->setItem(i, 2, new QTableWidgetItem(description));
             }
         } else {
             ui->mesClasseA->setVisible(false);
@@ -204,10 +206,9 @@ void ClassesPage::on_supprimer_clicked() {
             QMessageBox::warning(this, "Erreur", "Veuillez selectionner une classe a supprimer.");
             return;
         }
-        QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Confirmation", "Vous etes sur de supprimer cette classe et toutes ses donnees ?", QMessageBox::Yes|QMessageBox::No);
-
-        if (reply == QMessageBox::Yes) {
+        QMessageBox::StandardButton reponse;
+        reponse = QMessageBox::question(this, "Confirmation", "Vous etes sur de supprimer cette classe et toutes ses donnees ?", QMessageBox::Yes|QMessageBox::No);
+        if (reponse == QMessageBox::Yes) {
             int idprof = professeur->getId();
             Classe classe(idClasse,idprof,"","","");
             bool estSupprime = professeur->DelClasse(classe);

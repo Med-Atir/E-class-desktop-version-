@@ -5,7 +5,7 @@
 #define PFM_PARAMETRES_H
 
 #include <QWidget>
-
+class User;
 
 QT_BEGIN_NAMESPACE
 
@@ -20,11 +20,17 @@ class Parametres : public QWidget {
 
 public:
     explicit Parametres(QWidget *parent = nullptr);
-
     ~Parametres() override;
-
+    void setUser(User* user);
+private slots:
+    void on_changernom_clicked();
+    void on_supprimercompte_clicked();
+    void on_changeremail_clicked();
+    signals:
+    void demandeDeconnection();
 private:
     Ui::Parametres *ui;
+    User* user;
 };
 
 

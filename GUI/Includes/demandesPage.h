@@ -19,9 +19,8 @@ class DemandesPage : public QWidget {
 
 public:
     explicit DemandesPage(QWidget *parent = nullptr,User* user = nullptr);
-
     ~DemandesPage() override;
-
+    void afficherDemandes(User* user);
 private:
     Ui::DemandesPage *ui;
     User* user;

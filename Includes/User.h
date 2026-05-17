@@ -17,6 +17,9 @@ public:
     void setEmail(std::string email) ;
     int getId() const;
     void setId(int id);
+    bool DeleteAcc();
+    bool changerNom(std::string);
+    bool changeremail(std::string);
 protected:
     int Id;
     std::string Nom;

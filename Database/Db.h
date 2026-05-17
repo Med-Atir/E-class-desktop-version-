@@ -25,7 +25,6 @@ private:
 public:
     DB();
     ~DB();
-    // Gestion de la connexion
     bool connect(const QString& dbName);
     void disconnect();
     static bool AddClasse(Classe& cl,int idprof);
@@ -60,6 +59,12 @@ public:
     static std::string hasherPass(const std::string& pass);
     static bool etdInscrit(int idetd,int idclasee);
     static bool demandeDejaAtt(int idetd,int idclasse);
+    static bool delAccount(int iduser);
+    static bool changerNom(int iduser,std::string nom);
+    static bool changerEmail(int iduser,std::string email);
+    static std::vector<Demande> getDemandesEtd(int idetd);
+    static std::string getNomProf(int);
+    static bool AnnulerDemandeEtd(int,int);
 };
 
 #endif // DB_H

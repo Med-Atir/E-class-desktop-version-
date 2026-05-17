@@ -12,6 +12,7 @@ public:
     Classe(const Classe& cl);
     int getId();
     int getIdProf();
+    std::string getNomProf();
     std::string getTitre();
     std::string getCode();
     std::string getDescription();

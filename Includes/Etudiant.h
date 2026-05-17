@@ -15,10 +15,12 @@ public:
     bool InscrireClasse(Classe&);
     bool estInscri(int);
     bool DemandeDejaAtt(int);
+    bool AnnulerDemande(int);
     std::vector<Classe> getCoursInscri();
     std::vector<Annonce> getAnnonces();
     std::vector<Devoir> getDevoirs();
     std::vector<Question> getMesQuestions();
+    std::vector<Demande> getMesDemandes();
     void addQuestion(Question&);
 };
 
