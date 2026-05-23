@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>VideoPage</class>
+ <widget class="QWidget" name="VideoPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>786</width>
+    <height>607</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+    font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, Arial, sans-serif;
+    font-size: 14px;
+    color: #2c3e50; 
+}
+
+QLabel {
+    font-size: 22px;
+    font-weight: bold;
+    color: brown; 
+    padding-bottom: 5px;
+}
+QTableWidget {
+    background-color: #ffffff;
+    alternate-background-color: #f8f9fa; 
+    border: 1px solid #e0e0e0;
+    border-radius: 8px; 
+    gridline-color: #eeeeee;
+    selection-background-color: #3498db; 
+    selection-color: #ffffff;
+    padding: 5px;
+}
+
+QHeaderView::section {
+    background-color: #2c3e50; 
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 8px;
+    border: none;
+    border-right: 1px solid #34495e;
+}
+
+QTableCornerButton::section {
+    background-color: #2c3e50;
+    border: none;
+}
+
+QLineEdit, QTextEdit {
+    background-color: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 8px;
+    color: #333333;
+}
+
+QLineEdit:focus, QTextEdit:focus {
+    border: 2px solid #3498db;
+    background-color: #fbfdff;
+}
+QComboBox {
+    background-color: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 6px 15px;
+    color: #333333;
+    font-weight: bold;
+}
+
+QComboBox:hover, QComboBox:focus {
+    border: 2px solid #3498db;
+}
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 30px;
+    border-left: 1px solid #e2e8f0;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+QPushButton {
+    background-color: #3498db; 
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+QPushButton:hover {
+    background-color: #2980b9; 
+}
+
+QPushButton:pressed {
+    background-color: #1f618d;
+}</string>
+  </property>
+  <widget class="QComboBox" name="classe">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>540</y>
+     <width>161</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="choisirFichier">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>450</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:green;</string>
+   </property>
+   <property name="text">
+    <string>Choisir video</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="chemin">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>390</y>
+     <width>711</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  color: #2C3E50;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tabvideo">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>761</width>
+     <height>341</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="msgVide">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>60</y>
+     <width>901</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  color: #2C3E50;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="addlbl">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>400</y>
+     <width>331</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  color: #2C3E50;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;</string>
+   </property>
+   <property name="text">
+    <string>Ajouter un video</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="poster">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>540</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Poster</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>221</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  color: #2C3E50;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;</string>
+   </property>
+   <property name="text">
+    <string>Videos:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="titreFichier">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>450</y>
+     <width>241</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
