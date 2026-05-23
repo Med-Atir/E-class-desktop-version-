@@ -11,6 +11,7 @@
 #include "Question.h"
 class Devoir;
 class Document;
+class Video;
 class Professeur:public User {
 public:
     Professeur(int Id,std::string Nom,std::string Email);
@@ -30,7 +31,9 @@ public:
     std::vector<Document> getDocuments();
     std::vector<Devoir> getDevoirs();
     std::vector<Question> getQuestions();
+    std::vector<Video> getVideos();
     bool AddReponse(Question&,std::string reponse);
+    bool AddVideo(Video video, Classe &classe);
 };
 
 

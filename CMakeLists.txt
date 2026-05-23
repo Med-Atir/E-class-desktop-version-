@@ -64,5 +64,9 @@ add_executable(PFM
         GUI/UI/parametres.ui
         GUI/UI/questionsPage.ui
         GUI/UI/signupwindow.ui
+        GUI/Sources/videoPage.cpp
+        GUI/Includes/videoPage.h
+        Includes/Video.h
+        Sources/Video.cpp
 )
 target_link_libraries(PFM PRIVATE Qt6::Sql Qt6::Widgets)

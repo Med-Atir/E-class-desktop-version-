@@ -26,14 +26,13 @@ void ClassesPage::AfficherClasses(User* currentUser) {
     if (!currentUser) return;
     this->user = currentUser;
     if (Professeur* professeur = dynamic_cast<Professeur *>(user)) {
-        std::vector<Classe> mesClasses = DB::getProfclasse(user->getId());
+        std::vector<Classe> mesClasses  = professeur->getMesClasses();
         ui->rechercherClasse->setVisible(false);
         ui->codeClasse->setVisible(false);
         ui->rechercher->setVisible(false);
         ui->resultatRecherche->setVisible(false);
         ui->demandeAcces->setVisible(false);
         ui->rechercheVide->setVisible(false);
-
         ui->titreClasse->setVisible(true);
         ui->supprimer->setVisible(true);
         ui->delClasse->setVisible(true);

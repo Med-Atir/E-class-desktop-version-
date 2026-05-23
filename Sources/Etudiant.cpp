@@ -2,6 +2,7 @@
 //IA S4 / Groupe 1
 #include "../Includes/Etudiant.h"
 #include "../Includes/Question.h"
+#include "../Includes/Video.h"
 #include "../Database/Db.h"
 
 Etudiant::Etudiant(int id, std::string Nom, std::string Email) :User(id,Nom,Email){}
@@ -55,4 +56,8 @@ bool Etudiant::AnnulerDemande(int dem) {
 
 std::vector<Document> Etudiant::getMesDocuments() {
     return DB::getEtdDocuments(this->Id);
+}
+
+std::vector<Video> Etudiant::getMesVideos() {
+    return DB::getEtdVideos(this->Id);
 }

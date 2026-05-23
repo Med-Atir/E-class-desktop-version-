@@ -5,6 +5,7 @@
 #include "../UI/ui_Dashboard.h"
 #include "../Includes/loginwindow.h"
 #include "../../Includes/Professeur.h"
+#include "GUI/Includes/VideoPage.h"
 
 Dashboard::Dashboard(User* user,QWidget *parent)
     : QMainWindow(parent)
@@ -28,6 +29,7 @@ Dashboard::Dashboard(User* user,QWidget *parent)
     questionsPage = new QuestionsPage(this);
     annoncesPage = new AnnoncesPage(this);
     parametresPage = new Parametres(this);
+    videoPage = new VideoPage(this);
     connect(parametresPage,&Parametres::demandeDeconnection,this,&Dashboard::on_btnDeconnecter_clicked);
     ui->contenu->addWidget(homePage);
     ui->contenu->addWidget(classesPage);
@@ -36,12 +38,21 @@ Dashboard::Dashboard(User* user,QWidget *parent)
     ui->contenu->addWidget(questionsPage);
     ui->contenu->addWidget(annoncesPage);
     ui->contenu->addWidget(parametresPage);
+    ui->contenu->addWidget(videoPage);
     ui->contenu->setCurrentWidget(homePage);
     homePage->afficherStats(this->user);
 }
 
 Dashboard::~Dashboard(){
     delete ui;
+    delete classesPage;
+    delete annoncesPage;
+    delete demandesPage;
+    delete devoirsPage;
+    delete homePage;
+    delete parametresPage;
+    delete questionsPage;
+    delete videoPage;
     delete this->user;
 }
 
@@ -93,4 +104,8 @@ void Dashboard::on_mesdemandes_clicked() {
 void Dashboard::on_parametre_clicked() {
     ui->contenu->setCurrentWidget(parametresPage);
     parametresPage->setUser(this->user);
+}
+void Dashboard::on_video_clicked() {
+    ui->contenu->setCurrentWidget(videoPage);
+    videoPage->afficherVids(this->user);
 }

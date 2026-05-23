@@ -137,6 +137,13 @@ QLabel#lbllogo {
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="video">
+         <property name="text">
+          <string>Mes Cours video</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="mesquestions">
          <property name="text">
           <string>Mes questions</string>

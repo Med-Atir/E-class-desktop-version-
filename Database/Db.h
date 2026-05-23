@@ -18,6 +18,7 @@ class Classe;
 class Professeur;
 class Etudiant;
 class User;
+class Video;
 class DB {
 private:
     QSqlDatabase db;
@@ -68,6 +69,9 @@ public:
     static int getIdprofByClass(int idcl);
     static bool addDevoir(Devoir&);
     static std::vector<Document> getEtdDocuments(int idetd);
+    static std::vector<Video> getProfVideos(int idprof);
+    static std::vector<Video> getEtdVideos(int idetd);
+    static bool AddVideo(Video&,Classe&);
 };
 
 #endif // DB_H

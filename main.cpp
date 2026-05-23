@@ -8,7 +8,7 @@
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     DB baseDeDonnees;
-    if (!baseDeDonnees.connect("C:/Users/simoa/Documents/Semestre4/PFM/Database/pfm.db")) {
+    if (!baseDeDonnees.connect("C:/Users/simoa/Documents/Semestre 4/PFM/Database/pfm.db")) {
         return -1;
     }
     SignupWindow s;

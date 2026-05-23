@@ -5,7 +5,7 @@
 #define _ETUDIANT_H_
 #include "Devoir.h"
 #include "Question.h"
-
+class Video;
 class Etudiant:public User{
 public:
     Etudiant(int id,std::string Nom,std::string Email);
@@ -22,6 +22,7 @@ public:
     std::vector<Question> getMesQuestions();
     std::vector<Demande> getMesDemandes();
     std::vector<Document> getMesDocuments();
+    std::vector<Video> getMesVideos();
     bool addQuestion(Question&);
 };
 

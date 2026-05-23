@@ -9,6 +9,7 @@
 #include "home.h"
 #include "parametres.h"
 #include "questionsPage.h"
+#include "videoPage.h"
 #include <QMainWindow>
 
 class User;
@@ -35,6 +36,7 @@ private slots:
     void on_mesquestions_clicked();
     void on_mesdemandes_clicked();
     void on_parametre_clicked();
+    void on_video_clicked();
 
 private:
     Ui::Dashboard *ui;
@@ -46,5 +48,6 @@ private:
     Home* homePage;
     Parametres* parametresPage;
     QuestionsPage* questionsPage;
+    VideoPage* videoPage;
 };
 #endif // _DASHBOARD_H_

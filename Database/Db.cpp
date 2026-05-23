@@ -7,11 +7,11 @@
 #include "../Includes/Professeur.h"
 #include "../Includes/Etudiant.h"
 #include "../Includes/User.h"
+#include "../Includes/Video.h"
 #include <QByteArray>
 #include <QCryptographicHash>
 
 DB::DB() {
-    // On spécifie qu'on utilise le driver SQLite
     db = QSqlDatabase::addDatabase("QSQLITE");
 }
 
@@ -23,12 +23,12 @@ bool DB::connect(const QString& dbName) {
     db.setDatabaseName(dbName);
 
     if (!db.open()) {
-        qDebug() << "Erreur critique : Impossible d'ouvrir la base de donnees ->" << db.lastError().text();
+        qDebug() << "Erreur: Impossible d'ouvrir la base de donnees car: " << db.lastError().text();
         return false;
     }
     QSqlQuery query;
     query.exec("PRAGMA foreign_keys = ON;");
-    qDebug() << "Succes : Connecte a la base de donnees SQLite.";
+    qDebug() << "Succes : Connecte a la base de donnees";
     return true;
 }
 
@@ -739,4 +739,61 @@ std::vector<Document> DB::getEtdDocuments(int idetd) {
         }
     }
     return mesdocs;
+}
+
+std::vector<Video> DB::getEtdVideos(int idetd) {
+    QSqlQuery requete;
+    std::vector<Video> mesvids;
+    requete.prepare("SELECT * FROM video "
+                    "INNER JOIN classe_etudiant "
+                    "ON video.id_classe = classe_etudiant.classe_id "
+                    "WHERE classe_etudiant.etudiant_id = :id");
+    requete.bindValue(":id",idetd);
+    if (requete.exec()) {
+        while (requete.next()) {
+            int id = requete.value("id").toInt();
+            std::string titre = requete.value("titre").toString().toStdString();
+            std::string chemin = requete.value("chemin_fichier").toString().toStdString();
+            int idclasse = requete.value("id_classe").toInt();
+            int idprof = requete.value("id_prof").toInt();
+            QDateTime date = requete.value("date_upload").toDateTime();
+            Video video(id,titre,chemin,date,idprof,idclasse);
+            mesvids.push_back(video);
+        }
+    }
+    return mesvids;
+}
+
+std::vector<Video> DB::getProfVideos(int idprof) {
+    std::vector<Video> vect;
+    QSqlQuery requete;
+    requete.prepare("SELECT * FROM video WHERE id_prof = :id");
+    requete.bindValue(":id",idprof);
+    if (requete.exec()) {
+        while (requete.next()) {
+            int id = requete.value("id").toUInt();
+            std::string titre = requete.value("titre").toString().toStdString();
+            std::string cheminFichier = requete.value("chemin_fichier").toString().toStdString();
+            QDateTime date = requete.value("date_upload").toDateTime();
+            int idprof = requete.value("id_prof").toUInt();
+            int idclasse = requete.value("id_classe").toUInt();
+            Video video(id,titre,cheminFichier,date,idprof,idclasse);
+            vect.push_back(video);
+        }
+    }
+    return vect;
+}
+
+bool DB::AddVideo(Video& video, Classe &classe) {
+    QSqlQuery requete;
+    requete.prepare("INSERT INTO Video(id,titre,chemin_fichier,id_classe,id_prof) VALUES (:id,:titre,:chemin,:idcl,:idpr)");
+    requete.bindValue(":id",video.getID());
+    requete.bindValue(":titre",QString::fromStdString(video.getTitre()));
+    requete.bindValue(":chemin",QString::fromStdString(video.getCheminFichier()));
+    requete.bindValue(":idcl",classe.getId());
+    requete.bindValue(":idpr",classe.getIdProf());
+    if (requete.exec()) {
+        return true;
+    }
+    return false;
 }

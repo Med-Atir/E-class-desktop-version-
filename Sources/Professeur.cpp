@@ -4,6 +4,7 @@
 #include "../Database/Db.h"
 #include "../Includes/Document.h"
 #include "../Includes/Devoir.h"
+#include "../Includes/Video.h"
 
 Professeur::Professeur(int Id,std::string Nom,std::string Email):User(Id,Nom,Email) {
 }
@@ -74,4 +75,12 @@ std::vector<Devoir> Professeur::getDevoirs() {
 
 bool Professeur::addDevoir(Devoir &devoir) {
    return DB::addDevoir(devoir);
+}
+
+bool Professeur::AddVideo(Video video, Classe &classe) {
+   return DB::AddVideo(video,classe);
+}
+
+std::vector<Video> Professeur::getVideos() {
+   return DB::getProfVideos(this->Id);
 }
