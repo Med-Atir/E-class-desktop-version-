@@ -26,14 +26,14 @@ public:
     bool AddAnnoce(Annonce&);
     bool DelAnnonce(Annonce&);
     std::vector<Annonce> getAnnonces();
-    bool AddDocument(Document&,Classe&);
+    bool AddDocument(Document&);
     bool DelDocument(Document&);
     std::vector<Document> getDocuments();
     std::vector<Devoir> getDevoirs();
     std::vector<Question> getQuestions();
     std::vector<Video> getVideos();
     bool AddReponse(Question&,std::string reponse);
-    bool AddVideo(Video video, Classe &classe);
+    bool AddVideo(Video video);
 };
 
 

@@ -13,8 +13,12 @@ Question::Question(int id, std::string cont, QDateTime dateQ, int idEtd,int idPr
     this->setProf(idPr);
     this->setClasse(idCl);
     this->setEtat(estR);
+    this->dateReponse = nullptr;
+    this->Reponse = nullptr;
     if (estR) {
+        if (dateR != nullptr)
         this->setDateR(*dateR);
+        if (Reponse != nullptr)
         this->setReponse(Reponse);
     }
     else {
@@ -30,9 +34,13 @@ Question::Question(const Question &q) {
     this->setProf(q.idProf);
     this->setClasse(q.idClasse);
     this->setEtat(q.estRepondu);
+    this->dateReponse = nullptr;
+    this->Reponse = nullptr;
     if (q.estRepondu) {
-        this->setDateR(*q.dateReponse);
-        this->setReponse(q.Reponse);
+        if (q.dateReponse != nullptr)
+            this->setDateR(*q.dateReponse);
+        if (q.Reponse!= nullptr)
+            this->setReponse(q.Reponse);
     }
     else {
         this->dateReponse = nullptr;
@@ -117,9 +125,16 @@ void Question::setProf(int idpr) {
 }
 
 void Question::setReponse(std::string *reponse) {
-    if (reponse != nullptr){
-        this->Reponse = new std::string;
-        *this->Reponse = *reponse;
+    if (reponse != nullptr) {
+        if (this->Reponse != nullptr) {
+            delete this->Reponse;
+        }
+        this->Reponse = new std::string(*reponse);
+    } else {
+        if (this->Reponse != nullptr) {
+            delete this->Reponse;
+            this->Reponse = nullptr;
+        }
     }
 }
 

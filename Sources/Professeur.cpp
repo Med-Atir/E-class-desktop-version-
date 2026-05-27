@@ -37,8 +37,8 @@ bool Professeur::AddAnnoce(Annonce &a) {
    return DB::AddAnnoce(a);
 }
 
-bool Professeur::AddDocument(Document& d,Classe &c) {
-   return DB::AddDocument(d,c);
+bool Professeur::AddDocument(Document& d) {
+   return DB::AddDocument(d);
 }
 
 bool Professeur::AddReponse(Question& q,std::string reponse) {
@@ -77,8 +77,8 @@ bool Professeur::addDevoir(Devoir &devoir) {
    return DB::addDevoir(devoir);
 }
 
-bool Professeur::AddVideo(Video video, Classe &classe) {
-   return DB::AddVideo(video,classe);
+bool Professeur::AddVideo(Video video) {
+   return DB::AddVideo(video);
 }
 
 std::vector<Video> Professeur::getVideos() {

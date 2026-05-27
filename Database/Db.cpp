@@ -177,6 +177,7 @@ bool DB::addQuestion(Question &q) {
     if (requete.exec())
         return true;
     else
+        qDebug() <<"Error:" <<requete.lastError().text();
         return false;
 }
 
@@ -294,17 +295,17 @@ bool DB::AddAnnoce(Annonce& a) {
     return false;
 }
 
-bool DB::AddDocument(Document& document,Classe &classe) {
+bool DB::AddDocument(Document& document) {
     QSqlQuery requete;
-    requete.prepare("INSERT INTO document(id,titre,chemin_fichier,id_classe,id_prof) VALUES (:id,:titre,:chemin,:idcl,:idpr)");
-    requete.bindValue(":id",document.getID());
+    requete.prepare("INSERT INTO document(titre,chemin_fichier,id_classe,id_prof) VALUES (:titre,:chemin,:idcl,:idpr)");
     requete.bindValue(":titre",QString::fromStdString(document.getTitre()));
     requete.bindValue(":chemin",QString::fromStdString(document.getCheminFichier()));
-    requete.bindValue(":idcl",classe.getId());
-    requete.bindValue(":idpr",classe.getIdProf());
+    requete.bindValue(":idcl",document.getIdclasse());
+    requete.bindValue(":idpr",document.getIdprof());
     if (requete.exec()) {
         return true;
     }
+    qDebug() << "Echec d'ajout :" << requete.lastError().text();
     return false;
 }
 
@@ -784,16 +785,16 @@ std::vector<Video> DB::getProfVideos(int idprof) {
     return vect;
 }
 
-bool DB::AddVideo(Video& video, Classe &classe) {
+bool DB::AddVideo(Video& video) {
     QSqlQuery requete;
-    requete.prepare("INSERT INTO Video(id,titre,chemin_fichier,id_classe,id_prof) VALUES (:id,:titre,:chemin,:idcl,:idpr)");
-    requete.bindValue(":id",video.getID());
+    requete.prepare("INSERT INTO document(titre,chemin_fichier,id_classe,id_prof) VALUES (:titre,:chemin,:idcl,:idpr)");
     requete.bindValue(":titre",QString::fromStdString(video.getTitre()));
     requete.bindValue(":chemin",QString::fromStdString(video.getCheminFichier()));
-    requete.bindValue(":idcl",classe.getId());
-    requete.bindValue(":idpr",classe.getIdProf());
+    requete.bindValue(":idcl",video.getIdclasse());
+    requete.bindValue(":idpr",video.getIdprof());
     if (requete.exec()) {
         return true;
     }
+    qDebug() << "Echec d'ajout :" << requete.lastError().text();
     return false;
 }

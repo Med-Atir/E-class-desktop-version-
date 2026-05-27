@@ -44,7 +44,7 @@ public:
     static bool AddAnnoce(Annonce&);
     static bool DelAnnonce(Annonce&);
     static std::vector<Annonce> getProfAnnonces(int idprof);
-    static bool AddDocument(Document& document,Classe&);
+    static bool AddDocument(Document& document);
     static bool DelDocument(Document&);
     static bool DelDevoir(Devoir&);
     static std::vector<Document> getDocuments(Classe&);
@@ -71,7 +71,7 @@ public:
     static std::vector<Document> getEtdDocuments(int idetd);
     static std::vector<Video> getProfVideos(int idprof);
     static std::vector<Video> getEtdVideos(int idetd);
-    static bool AddVideo(Video&,Classe&);
+    static bool AddVideo(Video&);
 };
 
 #endif // DB_H

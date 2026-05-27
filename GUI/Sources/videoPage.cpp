@@ -151,9 +151,8 @@ void VideoPage::on_poster_clicked() {
             int idcl = ui->classe->currentData().toInt();
             int idprof = professeur->getId();
             QDateTime d = QDateTime::currentDateTime();
-                Classe classe(idcl,idprof,"","","");
                 Video video(1,titrefile.toStdString(),cheminFinal.toStdString(),d,idprof,idcl);
-                bool estdone = professeur->AddVideo(video,classe);
+                bool estdone = professeur->AddVideo(video);
                 if (estdone) {
                     QMessageBox::information(this,"Succes","Video a ete ajouter avec succes");
                     afficherVids(user);

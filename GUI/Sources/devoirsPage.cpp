@@ -228,9 +228,8 @@ void DevoirsPage::on_poster_clicked() {
             int idprof = professeur->getId();
             QDateTime d = QDateTime::currentDateTime();
             if (typefile == "cours") {
-                Classe classe(idcl,idprof,"","","");
                 Document document(1,titrefile.toStdString(),cheminFinal.toStdString(),d,idprof,idcl);
-                bool estdone = professeur->AddDocument(document,classe);
+                bool estdone = professeur->AddDocument(document);
                 if (estdone) {
                     QMessageBox::information(this,"Succes","Cours a ete ajouter avec succes");
                     afficherFiles(user);
