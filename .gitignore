@@ -1,0 +1,22 @@
+# On ignore les fichiers de base de données SQLite pour éviter de fuiter des données de test
+*.db
+*.sqlite
+*.sqlite3
+
+# On ignore les dossiers de build générés automatiquement par Qt Creator ou CMake
+build/
+build-*/
+CMakeLists.txt.user
+*.user
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.exe
+
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
